@@ -1,0 +1,9 @@
+.numberInput {
+    width: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.numberInputWithError {
+    composes: numberInput;
+    border: 0.1rem solid red;
+}

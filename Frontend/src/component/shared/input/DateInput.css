@@ -1,0 +1,11 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/react-datepicker/2.8.0/react-datepicker.min.css');
+
+.dateInput {
+    width: 5rem;
+    margin-bottom: 0.5rem;
+}
+
+.dateInputWithError {
+    composes: dateInput;
+    border: 0.1rem solid red;
+}

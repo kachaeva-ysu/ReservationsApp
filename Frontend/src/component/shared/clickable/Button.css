@@ -1,0 +1,27 @@
+.button {
+    border: none;
+    border-radius: 0.25rem;
+    height: fit-content;
+    width: fit-content;
+    padding: 0.2rem 1rem;
+    margin-left: 1rem;
+    margin-right: 0.5rem;
+    font-size: 1rem;
+    background-color: #3ccccf;
+    color: #0b3840;
+}
+
+.button:hover {
+    background-color: #2f9a9c;
+}
+
+.darkButton {
+    composes: button;
+    font-size: 0.85rem;
+    background-color: #1a535c;
+    color: #fff7f7;
+}
+
+.darkButton:hover {
+    background-color: #0b3840;
+}

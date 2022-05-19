@@ -1,0 +1,15 @@
+.infoSection {
+    margin-left: 1rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.caption {
+    font-weight: bold;
+    margin-right: 0.2rem;
+    color: #0b3840;
+}
+
+.text {
+    color: #0b3840;
+}

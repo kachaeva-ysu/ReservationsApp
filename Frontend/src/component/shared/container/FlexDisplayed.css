@@ -1,0 +1,6 @@
+.flexDisplayed {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+    align-items: center;
+}

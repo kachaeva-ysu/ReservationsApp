@@ -1,0 +1,21 @@
+export const configData = {
+    "clientId": "566468911338-fagmtp1bke3nfnodmh0omj7v12g0omkh.apps.googleusercontent.com",
+    "baseUrl": "https://localhost:44329/",
+    "baseClientUrl": "http://localhost:9000",
+    "villasUrl": "villas/",
+    "villaImagesUrl": "villaImages/",
+    "usersUrl": "users/",
+    "authorizationUrl": "authorization/",
+    "signInUrl": "signIn/",
+    "signInWithGoogleUrl": "signInWithGoogle/",
+    "signUpUrl": "signUp",
+    "tokenUrl": "updateToken/",
+    "passwordUrl": "password/",
+    "reservationsUrl": "reservations/",
+    "userReservationsUrl": "/reservations",
+    "imageSource": "data:image/jpeg;base64,",
+    "twoMinutes": 120000,
+    "millisecondsInDay": 1000 * 60 * 60 * 24,
+    "emailPattern": /^\w+@\w+.\w*$/,
+    "phonePattern": /^\+?\d{6,15}$/
+}

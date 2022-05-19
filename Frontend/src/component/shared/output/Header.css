@@ -1,0 +1,12 @@
+.header {
+    font-size: 1.8rem;
+    margin-top: 1.5rem;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    color: #1a535c;
+}
+
+.subheader {
+    composes: header;
+    font-size: 1.3rem;
+}

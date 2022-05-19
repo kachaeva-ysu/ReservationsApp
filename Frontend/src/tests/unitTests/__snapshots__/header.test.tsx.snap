@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render Header component 1`] = `
+<h2>
+  Test header
+</h2>
+`;
+
+exports[`Should render Header component 2 1`] = `
+<h2>
+  Test header
+</h2>
+`;

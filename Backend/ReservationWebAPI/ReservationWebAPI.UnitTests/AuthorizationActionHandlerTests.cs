@@ -22,32 +22,32 @@ namespace ReservationWebAPI.UnitTests
         }
 
         [Fact]
-        public async Task GetUserIdWithPasswordReturnsUserIdIfUserExists()
+        public async Task SignInWithPasswordReturnsUserIdIfUserExists()
         {
             await _repo.AddUserAsync(_testUser);
 
-            var userId = await _authorizationActionHandler.GetUserIdAsync(_testUser.Email, _testUser.Password);
+            var userAuthorizationInfo = await _authorizationActionHandler.SignInAsync(_testUser.Email, _testUser.Password);
 
-            Assert.Equal(_testUser.Id, userId);
+            Assert.Equal(_testUser.Id, userAuthorizationInfo.UserId);
         }
 
         [Fact]
-        public async Task GetUserIdWithoutPasswordReturnsUserIdIfUserExists()
+        public async Task SignInWithoutPasswordReturnsUserIdIfUserExists()
         {
             await _repo.AddUserAsync(_testUser);
 
-            var userId = await _authorizationActionHandler.GetUserIdAsync(_testUser.Email);
+            var userAuthorizationInfo = await _authorizationActionHandler.SignInAsync(_testUser.Email);
 
-            Assert.Equal(_testUser.Id, userId);
+            Assert.Equal(_testUser.Id, userAuthorizationInfo.UserId);
         }
 
         [Fact]
         public async Task GetUserIdWithoutPasswordReturnsNewUserIdAndAddsUserIfUserDoesNotExists()
         {
-            var userId = await _authorizationActionHandler.GetUserIdAsync(_testUser.Email);
+            var userAuthorizationInfo = await _authorizationActionHandler.SignInAsync(_testUser.Email);
             var expectedUser = new User { Id = 1, Email = _testUser.Email, Name = _testUser.Name };
 
-            Assert.Equal(1, userId);
+            Assert.Equal(1, userAuthorizationInfo.UserId);
             Assert.Single(await _repo.GetUsersAsync());
             Assert.True(expectedUser.ValueEquals(await _repo.GetUserAsync(1)));
         }
@@ -65,7 +65,7 @@ namespace ReservationWebAPI.UnitTests
         public async Task GetNonExistentUserIdWithPasswordThrowsNotFoundException()
         {
             var exception = await Assert.ThrowsAsync<NotFoundException>(() => 
-                _authorizationActionHandler.GetUserIdAsync(_testUser.Email, _testUser.Password));
+                _authorizationActionHandler.SignInAsync(_testUser.Email, _testUser.Password));
             Assert.Equal("No user with this email", exception.Message);
         }
 
@@ -76,7 +76,7 @@ namespace ReservationWebAPI.UnitTests
             var wrongPassword = $"Wrong {_testUser.Password}";
 
             var exception = await Assert.ThrowsAsync<BadRequestException>(() => 
-                _authorizationActionHandler.GetUserIdAsync(_testUser.Email, wrongPassword));
+                _authorizationActionHandler.SignInAsync(_testUser.Email, wrongPassword));
             Assert.Equal("Invalid password", exception.Message);
         }
 

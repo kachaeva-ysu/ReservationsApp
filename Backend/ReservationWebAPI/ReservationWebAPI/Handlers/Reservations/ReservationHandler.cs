@@ -15,7 +15,7 @@ namespace ReservationWebAPI
 
         public async Task AddReservationAsync(Reservation reservation)
         {
-            _accessHandler.CheckAccessRightByReservation(reservation);
+            await _accessHandler.CheckAccessRightByReservationAsync(reservation);
             await _reservationActionHandler.AddReservationAsync(reservation);
         }
 

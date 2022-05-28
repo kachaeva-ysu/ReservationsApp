@@ -24,6 +24,16 @@ namespace ReservationWebAPI
             return user;
         }
 
+        public async Task<User> GetUserAsync(string email)
+        {
+            var user = await _repo.GetUserAsync(email);
+
+            if (user == null)
+                throw new NotFoundException("No user with this email");
+
+            return user;
+        }
+
         public async Task<IEnumerable<UsersReservation>> GetUsersReservationsAsync(int userId)
         {
             await GetUserAsync(userId);

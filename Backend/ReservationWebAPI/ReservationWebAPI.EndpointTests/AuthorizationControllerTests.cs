@@ -50,8 +50,11 @@ namespace ReservationWebAPI.EndpointTests
         [Fact]
         public async Task UpdateTokenReturnsOkAndNewTokenIfTokenInHeaderIsValidAndExpired()
         {
-            using var request = new HttpRequestMessage(HttpMethod.Get, $"{_uri}/updateToken?userId=1");
-            var token = _authorizationHandler.GetToken(1);
+            var postResponse = await _client.PostAsync($"{_uri}/signUp", StringContentMaker.GetBody(_testUser));
+            var userAuthorizationInfo = postResponse.Content.ReadFromJsonAsync<UserAuthorizationInfo>().Result;
+            _testUser.Id = userAuthorizationInfo.UserId;
+            using var request = new HttpRequestMessage(HttpMethod.Get, $"{_uri}/updateToken?userId={_testUser.Id}");
+            var token = userAuthorizationInfo.Token;
             token.ExpirationTime = DateTime.Now;
             request.Headers.TryAddWithoutValidation("Authorization", JsonConvert.SerializeObject(token));
 

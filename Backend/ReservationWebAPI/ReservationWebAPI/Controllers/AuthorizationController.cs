@@ -17,30 +17,28 @@ namespace ReservationWebAPI
         [HttpGet("signIn")]
         public async Task<ActionResult<UserAuthorizationInfo>> SignInAsync([FromQuery] string email, string password)
         {
-            var userId = await _authorizationHandler.GetUserIdAsync(email, password);
-            return Ok(_authorizationHandler.GetUserAuthorizationInfo(userId));
+            return Ok(await _authorizationHandler.SignInAsync(email, password));
         }
 
         [GoogleAuthorizationFilter]
         [HttpGet("signInWithGoogle")]
         public async Task<ActionResult<UserAuthorizationInfo>> SignInWithGoogleAsync([FromQuery] string email)
         {
-            var userId = await _authorizationHandler.GetUserIdAsync(email);
-            return Ok(_authorizationHandler.GetUserAuthorizationInfo(userId));
+            return Ok(await _authorizationHandler.SignInAsync(email));
         }
 
         [HttpPost("signUp")]
         public async Task<ActionResult<UserAuthorizationInfo>> SignUpAsync([FromBody] User newUser)
         {
-            var userId = await _authorizationHandler.AddUserAsync(newUser);
-            return CreatedAtAction("GetUserAsync", "User", new { userId }, _authorizationHandler.GetUserAuthorizationInfo(userId));
+            var userAuthorizationInfo = await _authorizationHandler.AddUserAsync(newUser);
+            return CreatedAtAction("GetUserAsync", "User", new { userId = userAuthorizationInfo.UserId}, userAuthorizationInfo);
         }
 
         [TokenAuthorizationFilter(true)]
         [HttpGet("updateToken")]
-        public ActionResult<Token> UpdateToken([FromQuery] int userId)
+        public async Task<ActionResult<Token>> UpdateToken([FromQuery] int userId)
         {
-            return Ok(_authorizationHandler.UpdateToken(userId));
+            return Ok(await _authorizationHandler.UpdateTokenAsync(userId));
         }
     }
 }

@@ -6,21 +6,26 @@ namespace ReservationWebAPI
     {
         private IUserInfoFromToken _userInfoFromToken;
         private IReservationActionHandler _reservationActionHandler;
+        private IUserActionHandler _userActionHandler;
 
-        public AccessHandler(IUserInfoFromToken userIdFromToken, IReservationActionHandler reservationActionHandler)
+        public AccessHandler(IUserInfoFromToken userIdFromToken, IReservationActionHandler reservationActionHandler, IUserActionHandler userActionHandler)
         {
             _userInfoFromToken = userIdFromToken;
             _reservationActionHandler = reservationActionHandler;
+            _userActionHandler = userActionHandler;
         }
 
-        public void CheckAccessRightByUserId(int userId)
+        public async Task CheckAccessRightByUserIdAsync(int userId)
         {
+            await CheckRefreshTokenAsync(userId);
             if (userId != _userInfoFromToken.UserId)
                 throw new ForbiddenException("Access denied");
         }
 
-        public void CheckAccessRightByEmail(string email)
+        public async Task CheckAccessRightByEmailAsync(string email)
         {
+            var user = _userActionHandler.GetUserAsync(email);
+            await CheckRefreshTokenAsync(user.Id);
             if(email != _userInfoFromToken.Email)
                 throw new ForbiddenException("Access denied");
         }
@@ -29,13 +34,20 @@ namespace ReservationWebAPI
         {
             var reservation = await _reservationActionHandler.GetReservationAsync(reservationId);
             var userId = reservation.UserId;
-            CheckAccessRightByUserId(userId);
+            await CheckAccessRightByUserIdAsync(userId);
         }
 
-        public void CheckAccessRightByReservation(Reservation reservation)
+        public async Task CheckAccessRightByReservationAsync(Reservation reservation)
         {
             var userId = reservation.UserId;
-            CheckAccessRightByUserId(userId);
+            await CheckAccessRightByUserIdAsync(userId);
+        }
+
+        private async Task CheckRefreshTokenAsync(int userId)
+        {
+            var user = await _userActionHandler.GetUserAsync(userId);
+            if(user.RefreshToken!=_userInfoFromToken.RefreshToken)
+                throw new ForbiddenException("Access denied");
         }
     }
 }

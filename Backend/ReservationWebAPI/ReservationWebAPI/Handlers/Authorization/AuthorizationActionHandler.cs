@@ -18,7 +18,7 @@ namespace ReservationWebAPI
             _userInfoFromToken = userInfoFromToken;
         }
 
-        public async Task<int> GetUserIdAsync(string email, string password)
+        public async Task<UserAuthorizationInfo> SignInAsync(string email, string password)
         {
             var users = await _repo.GetUsersAsync();
             foreach (var user in users)
@@ -26,46 +26,46 @@ namespace ReservationWebAPI
                 if (user.Email == email)
                 {
                     if (user.Password == _passwordHandler.GetHashedPassword(password, email))
-                    {
-                        return user.Id;
-                    }
+                        return await GetAndSaveUserAuthorizationInfoAsync(user);
                     throw new BadRequestException("Invalid password");
                 }
             }
             throw new NotFoundException("No user with this email");
         }
 
-        public async Task<int> GetUserIdAsync(string email)
+        public async Task<UserAuthorizationInfo> SignInAsync(string email)
         {
             var users = await _repo.GetUsersAsync();
             foreach (var user in users)
             {
                 if (user.Email == email)
-                    return user.Id;
+                    return await GetAndSaveUserAuthorizationInfoAsync(user);
             }
 
             var newUser = new User { Email = email, Name = _userInfoFromToken.Name };
             return await AddUserAsync(newUser);
         }
 
-        public UserAuthorizationInfo GetUserAuthorizationInfo(int userId)
-        {
-            return _authorizationHandler.GetUserAuthorizationInfo(userId);
-        }
-
-        public Token UpdateToken(int userId)
+        public async Task<Token> UpdateTokenAsync(int userId)
         {
             return _authorizationHandler.GetToken(userId);
         }
 
-        public async Task<int> AddUserAsync(User user)
+        public async Task<UserAuthorizationInfo> AddUserAsync(User user)
         {
             await CheckIfEmailIsAvailableAsync(user.Email);
             user.Password = _passwordHandler.GetHashedPassword(user.Password, user.Email);
             await _repo.AddUserAsync(user);
-            return user.Id;
+            return await GetAndSaveUserAuthorizationInfoAsync(user);
         }
 
+        private async Task<UserAuthorizationInfo> GetAndSaveUserAuthorizationInfoAsync(User user)
+        {
+            var userAuthorizationInfo = _authorizationHandler.GetUserAuthorizationInfo(user.Id);
+            user.RefreshToken = userAuthorizationInfo.Token.RefreshToken;
+            await _repo.UpdateUserAsync(user);
+            return userAuthorizationInfo;
+        }
         private async Task CheckIfEmailIsAvailableAsync(string email)
         {
             var users = await _repo.GetUsersAsync();

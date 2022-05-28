@@ -25,6 +25,7 @@ namespace ReservationWebAPI
                 if (!isTokenValid)
                     ContextResultMaker.CreateUnauthorizedResult(context);
                 userInfoFromToken.UserId = authorizationHandler.GetUserIdFromToken(token);
+                userInfoFromToken.RefreshToken = token.RefreshToken;
             }
             catch
             {

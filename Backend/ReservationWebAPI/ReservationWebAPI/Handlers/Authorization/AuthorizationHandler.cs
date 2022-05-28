@@ -13,29 +13,24 @@ namespace ReservationWebAPI
             _accessHandler = accessHandler;
         }
 
-        public UserAuthorizationInfo GetUserAuthorizationInfo(int userId)
+        public async Task<UserAuthorizationInfo> SignInAsync(string email, string password)
         {
-            return _authorizationActionHandler.GetUserAuthorizationInfo(userId);
+            return await _authorizationActionHandler.SignInAsync(email, password);
         }
 
-        public async Task<int> GetUserIdAsync(string email, string password)
+        public async Task<UserAuthorizationInfo> SignInAsync(string email)
         {
-            return await _authorizationActionHandler.GetUserIdAsync(email, password);
+            await _accessHandler.CheckAccessRightByEmailAsync(email);
+            return await _authorizationActionHandler.SignInAsync(email);
         }
 
-        public async Task<int> GetUserIdAsync(string email)
+        public async Task<Token> UpdateTokenAsync(int userId)
         {
-            _accessHandler.CheckAccessRightByEmail(email);
-            return await _authorizationActionHandler.GetUserIdAsync(email);
+            await _accessHandler.CheckAccessRightByUserIdAsync(userId);
+            return await _authorizationActionHandler.UpdateTokenAsync(userId);
         }
 
-        public Token UpdateToken(int userId)
-        {
-            _accessHandler.CheckAccessRightByUserId(userId);
-            return _authorizationActionHandler.UpdateToken(userId);
-        }
-
-        public async Task<int> AddUserAsync(User user)
+        public async Task<UserAuthorizationInfo> AddUserAsync(User user)
         {
             return await _authorizationActionHandler.AddUserAsync(user);
         }

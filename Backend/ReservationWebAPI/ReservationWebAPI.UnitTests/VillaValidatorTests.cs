@@ -15,7 +15,7 @@ namespace ReservationWebAPI.UnitTests
 
             Assert.Single(errors);
             Assert.Equal("Name", errors[0].PropertyName);
-            Assert.Equal("Name cannot be empty", errors[0].ErrorMessage);
+            Assert.Equal("Invalid Name", errors[0].ErrorMessage);
         }
 
         [Fact]
@@ -27,7 +27,7 @@ namespace ReservationWebAPI.UnitTests
 
             Assert.Single(errors);
             Assert.Equal("Name", errors[0].PropertyName);
-            Assert.Equal("Name cannot be empty", errors[0].ErrorMessage);
+            Assert.Equal("Invalid Name", errors[0].ErrorMessage);
         }
 
         [Fact]
@@ -39,7 +39,7 @@ namespace ReservationWebAPI.UnitTests
 
             Assert.Single(errors);
             Assert.Equal("PriceForDay", errors[0].PropertyName);
-            Assert.Equal("Price For Day cannot be empty", errors[0].ErrorMessage);
+            Assert.Equal("Invalid Price For Day", errors[0].ErrorMessage);
         }
 
         [Fact]
@@ -51,7 +51,7 @@ namespace ReservationWebAPI.UnitTests
 
             Assert.Single(errors);
             Assert.Equal("PriceForDay", errors[0].PropertyName);
-            Assert.Equal("Price For Day cannot be empty", errors[0].ErrorMessage);
+            Assert.Equal("Invalid Price For Day", errors[0].ErrorMessage);
         }
 
         [Fact]
@@ -63,7 +63,7 @@ namespace ReservationWebAPI.UnitTests
 
             Assert.Single(errors);
             Assert.Equal("NumberOfRooms", errors[0].PropertyName);
-            Assert.Equal("Number Of Rooms cannot be empty", errors[0].ErrorMessage);
+            Assert.Equal("Invalid Number Of Rooms", errors[0].ErrorMessage);
         }
 
         [Fact]
@@ -75,7 +75,7 @@ namespace ReservationWebAPI.UnitTests
 
             Assert.Single(errors);
             Assert.Equal("NumberOfRooms", errors[0].PropertyName);
-            Assert.Equal("Number Of Rooms cannot be empty", errors[0].ErrorMessage);
+            Assert.Equal("Invalid Number Of Rooms", errors[0].ErrorMessage);
         }
 
         [Fact]

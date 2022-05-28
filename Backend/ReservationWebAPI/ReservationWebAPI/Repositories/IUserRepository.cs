@@ -7,6 +7,7 @@ namespace ReservationWebAPI
     {
         public Task<IEnumerable<User>> GetUsersAsync();
         public Task<User> GetUserAsync(int userId);
+        public Task<User> GetUserAsync(string email);
         public Task<IEnumerable<UsersReservation>> GetUsersReservationsAsync(int userId);
         public Task AddUserAsync(User user);
         public Task DeleteUserAsync(User user);

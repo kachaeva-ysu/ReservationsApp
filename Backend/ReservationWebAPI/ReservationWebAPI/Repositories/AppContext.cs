@@ -74,6 +74,11 @@ namespace ReservationWebAPI
             return await Users.FindAsync(userId);
         }
 
+        public async Task<User> GetUserAsync(string email)
+        {
+            return await Users.FirstAsync(user => user.Email == email);
+        }
+
         public async Task AddUserAsync(User user)
         {
             Users.Add(user);

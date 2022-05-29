@@ -12,10 +12,10 @@ type ReservationInfo = {
 const ReservationInfo = ({resourceName, startDate, endDate, totalPrice}: ReservationInfo) => {
     return (
         <div className={s.flexDisplayed}>
-            <InfoSection id='resourceName' caption='Name:' text={resourceName}/>
-            <InfoSection id='startDate' caption='Start date:' text={startDate}/>
-            <InfoSection id='endDate' caption='End date:' text={endDate}/>
-            <InfoSection id='totalPrice' caption='Total price:' text={totalPrice}/>
+            <InfoSection id='resourceName' caption='Название виллы:' text={resourceName}/>
+            <InfoSection id='startDate' caption='Дата начала:' text={startDate}/>
+            <InfoSection id='endDate' caption='Дата окончания:' text={endDate}/>
+            <InfoSection id='totalPrice' caption='Итоговая стоимость:' text={totalPrice}/>
         </div>
     )
 }

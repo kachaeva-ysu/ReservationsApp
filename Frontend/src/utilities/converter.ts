@@ -2,21 +2,21 @@ import {configData} from "../../config";
 
 const convertBoolToString = (value: boolean): string => {
     if (value) {
-        return 'Yes';
+        return 'Есть';
     }
-    return 'No';
+    return 'Нет';
 }
 
 const convertRangeToText = (from: number, to: number, isPrice?: boolean): string => {
     let text = '';
     if (from) {
-        text += `from ${from} `;
+        text += `от ${from} `;
         if (isPrice) {
             text += '$ ';
         }
     }
     if (to) {
-        text += `to ${to} `;
+        text += `до ${to} `;
         if (isPrice) {
             text += '$ ';
         }

@@ -8,7 +8,7 @@ const ResourceList = () => {
     const {resources} = useContext(AppContext).value;
     return (
         <>
-            {resources.length === 0 && <Title value='No matches' data-test-title/>}
+            {resources.length === 0 && <Title value='По заданным параметрам ничего не нашлось' data-test-title/>}
             {resources.length !== 0 &&
             <div className={s.flexDisplayed}>
                 {resources.map(resource =>

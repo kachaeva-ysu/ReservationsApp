@@ -16,11 +16,11 @@ const SignInForm = ({userInfo, onEmailChange, onPasswordChange, onSignInClick}: 
     return (
         <div className={s.pane}>
             <InputSection id='email' labelValue='Email' value={userInfo.email} onChange={onEmailChange}/>
-            <InputSection id='password' type='password' labelValue='Password'
+            <InputSection id='password' type='password' labelValue='Пароль'
                           value={userInfo.password} onChange={onPasswordChange}
             />
-            <Button onClick={onSignInClick} value='Sign in'/>
-            <LinkButton to='/signUp' value='Sign up'/>
+            <Button onClick={onSignInClick} value='Вход'/>
+            <LinkButton to='/signUp' value='Регистрация'/>
             <GoogleSignIn/>
         </div>
     )

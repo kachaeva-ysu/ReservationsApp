@@ -23,19 +23,19 @@ const SignUpForm = ({
                     }: SignUpFormProps) => {
     return (
         <div className={s.pane}>
-            <InputSection id='name' labelValue='Name' value={userInfo.name}
+            <InputSection id='name' labelValue='Имя' value={userInfo.name}
                           isError={errors.isNameError} onChange={onNameChange}
             />
-            <InputSection id='phone' labelValue='Phone' value={userInfo.phone}
+            <InputSection id='phone' labelValue='Телефон' value={userInfo.phone}
                           isError={errors.isPhoneError} onChange={onPhoneChange}
             />
             <InputSection id='email' labelValue='Email' value={userInfo.email}
                           isError={errors.isEmailError} onChange={onEmailChange}
             />
-            <InputSection id='password' type='password' labelValue='Password' value={userInfo.password}
+            <InputSection id='password' type='password' labelValue='Пароль' value={userInfo.password}
                           isError={errors.isPasswordError} onChange={onPasswordChange}
             />
-            <Button onClick={onSignUpClick} value='Sign up'/>
+            <Button onClick={onSignUpClick} value='Зарегистрироваться'/>
         </div>
     )
 }

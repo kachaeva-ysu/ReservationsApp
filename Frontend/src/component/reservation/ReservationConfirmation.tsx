@@ -38,9 +38,9 @@ const ReservationConfirmation = () => {
                 setReservedDates(villaDetails.reservedDates);
             } catch (error) {
                 if (error instanceof ClientError) {
-                    toastHandler.info('Villa is already reserved for these dates');
+                    toastHandler.info('Вилла уже забронирована на эти даты');
                 } else {
-                    toastHandler.error('Failed to fetch villa');
+                    toastHandler.error('Не удалось получить виллу. Попробуйте позже');
                 }
                 history.goBack();
             }
@@ -50,19 +50,19 @@ const ReservationConfirmation = () => {
 
     const onConfirm = async () => {
         if (userId === 0) {
-            toastHandler.info('Sign in to confirm reservation');
+            toastHandler.info('Войдите для подтерждения резервации');
             history.push('/signIn');
             return;
         }
         try {
             await createReservation(userId, startDate, endDate);
             excludeReservedResource(selectedResourceId);
-            toastHandler.success('Reservation completed');
+            toastHandler.success('Резервация успешно завершена');
         } catch (error) {
             if (error instanceof ClientError) {
-                toastHandler.error('Dates are not available');
+                toastHandler.error('Выбранные даты недоступны');
             } else {
-                toastHandler.error('Failed to create reservation');
+                toastHandler.error('Не удалось забронировать виллу. Попробуйте позже');
             }
         }
         history.push('/');
@@ -80,12 +80,12 @@ const ReservationConfirmation = () => {
     }
 
     return (
-        <PageTemplate headerValue='Confirm your reservation'>
+        <PageTemplate headerValue='Подтверждение резервации'>
             <ReservationInfo resourceName={resource.name} startDate={startDate} endDate={endDate}
                              totalPrice={totalPriceCalculator.getTotalPrice(startDate, endDate, resource.priceForDay)}
             />
-            <Button onClick={onConfirm} value='Confirm'/>
-            <Button onClick={onEditDates} value='Edit dates'/>
+            <Button onClick={onConfirm} value='Подтвердить'/>
+            <Button onClick={onEditDates} value='Изменить даты'/>
         </PageTemplate>
     )
 }

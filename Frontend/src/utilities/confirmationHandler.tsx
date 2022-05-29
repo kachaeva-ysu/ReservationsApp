@@ -7,8 +7,8 @@ const confirm = (message: string, onConfirm: () => void) => {
     toastHandler.info(
         <>
             <Label htmlFor='confirm' value={message} isClose={true}/>
-            <Button onClick={() => handleConfirm(onConfirm)} value='Yes' isDark={true}/>
-            <Button onClick={() => toastHandler.dismiss()} value='No' isDark={true}/>
+            <Button onClick={() => handleConfirm(onConfirm)} value='Да' isDark={true}/>
+            <Button onClick={() => toastHandler.dismiss()} value='Нет' isDark={true}/>
         </>
     )
 }

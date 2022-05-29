@@ -31,12 +31,12 @@ const SignIn = () => {
     const onSignInClick = async () => {
         try {
             if (!validateUserInfo()) {
-                toastHandler.info('Email and password cannot be empty');
+                toastHandler.info('Email и пароль не могут быть пустыми');
                 return;
             }
             const user = await authorizationService.signIn(userInfo.email, userInfo.password);
             saveUserAuthorizationInfo(user.token, user.userId);
-            toastHandler.success('You successfully signed in');
+            toastHandler.success('Вход успешно выполнен');
 
             if (!selectedResourceId) {
                 history.goBack();
@@ -45,9 +45,9 @@ const SignIn = () => {
             }
         } catch (error) {
             if (error instanceof ClientError) {
-                toastHandler.info('Invalid email or password');
+                toastHandler.info('Некорректный email или пароль');
             } else {
-                toastHandler.error('Failed to get user');
+                toastHandler.error('Не удалось получить пользователя. Попробуйте позже');
                 history.goBack();
             }
         }
@@ -62,7 +62,7 @@ const SignIn = () => {
     }
 
     return (
-        <PageTemplate headerValue='Sign in'>
+        <PageTemplate headerValue='Вход'>
             <SignInForm onSignInClick={onSignInClick} userInfo={userInfo}
                         onEmailChange={handleEmailChange} onPasswordChange={handlePasswordChange}
             />

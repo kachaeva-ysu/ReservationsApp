@@ -27,7 +27,7 @@ const Account = () => {
                 const user = await userService.getUser();
                 setUserInfo(user);
             } catch {
-                toastHandler.error('Failed to fetch user');
+                toastHandler.error('Не удалось получить пользователя. Попробуйте позже');
                 history.goBack();
             }
         }
@@ -40,7 +40,7 @@ const Account = () => {
                 const userReservations = await userService.getUserReservations();
                 setUserReservations(userReservations);
             } catch {
-                toastHandler.error('Failed to fetch reservations');
+                toastHandler.error('Не удалось получить резервации. Попробуйте позже');
             }
         }
         effect();
@@ -56,17 +56,17 @@ const Account = () => {
     }
 
     const onDeleteClick = () => {
-        confirmationHandler.confirm('Delete account?', deleteAccount);
+        confirmationHandler.confirm('Вы уверены, что хотите удалить аккаунт?', deleteAccount);
     }
 
     const deleteAccount = async () => {
         try {
             await userService.deleteUser();
             clearUserAuthorizationInfo();
-            toastHandler.success('Your account deleted');
+            toastHandler.success('Аккаунт удален');
             history.goBack();
         } catch {
-            toastHandler.error('Failed to delete user');
+            toastHandler.error('Не удалось удалить аккаунт. Попробуйте позже');
         }
     }
 
@@ -79,7 +79,7 @@ const Account = () => {
     }
 
     return (
-        <PageTemplate headerValue='My personal account'>
+        <PageTemplate headerValue='Мой аккаунт'>
             {!userInfo.isBeingEdited && !userInfo.isPasswordBeingChanged &&
             <div className={s.flexDisplayed}>
                 <UserInfoSection userInfo={userInfo}/>

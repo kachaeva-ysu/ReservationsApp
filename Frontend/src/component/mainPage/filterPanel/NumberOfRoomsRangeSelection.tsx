@@ -19,7 +19,7 @@ const NumberOfRoomsRangeSelection = ({
                                      }: NumberOfRoomsRangeSelectionProps) => {
     return (
         <div>
-            <Label htmlFor='numberOfRoomsRange' value='Number of rooms:'/>
+            <Label htmlFor='numberOfRoomsRange' value='Количество комнат:'/>
             <NumberRangeSelection fromId='roomFrom' toId='roomTo' from={roomFrom} to={roomTo}
                                   onFromChange={setRoomFrom} onToChange={setRoomTo} isError={isError}
             />

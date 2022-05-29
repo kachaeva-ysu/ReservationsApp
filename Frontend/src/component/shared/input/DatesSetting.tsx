@@ -74,14 +74,14 @@ const DatesSetting = ({onCancel, reservedDates}: DateSettingProps) => {
 
     return (
         <div>
-            <Title value='Select dates'/>
+            <Title value='Выберите даты'/>
             <DatesSelection startDate={dates.startDate} endDate={dates.endDate}
                             setStartDate={handleSetStartDate} setEndDate={handleSetEndDate}
                             isStartDateError={errors.isStartDateError}
                             isEndDateError={errors.isEndDateError} filterDate={filterDate}
             />
             <Button value='OK' onClick={handleConfirm} isDark={true}/>
-            <Button value='Cancel' onClick={handleCancel} isDark={true}/>
+            <Button value='Отмена' onClick={handleCancel} isDark={true}/>
         </div>
     );
 }

@@ -12,12 +12,8 @@ const getUserReservations = async () => {
     return baseService.baseFetch(usersUrl + authorizationHandler.getUserId() +configData.userReservationsUrl );
 }
 
-const updateUser = async (userInfo: { name?: string, phone?: string }) => {
+const updateUser = async (userInfo: { name?: string, phone?: string, oldPassword?: string, password?: string }) => {
     return baseService.baseFetch(usersUrl + authorizationHandler.getUserId(), 'PATCH', JSON.stringify(userInfo));
-}
-
-const updatePassword = async (userInfo: {password: string, oldPassword: string}) => {
-    return baseService.baseFetch(usersUrl+configData.passwordUrl+authorizationHandler.getUserId(), 'PATCH', JSON.stringify(userInfo));
 }
 
 const deleteUser = async () => {
@@ -28,6 +24,5 @@ export default {
     getUser,
     getUserReservations,
     updateUser,
-    updatePassword,
     deleteUser
 }

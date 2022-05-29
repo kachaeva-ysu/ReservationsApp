@@ -20,13 +20,13 @@ const Nav = () => {
 
     return (
         <nav className={s.nav}>
-            <Link className={s.refLeft} to='/'>Main page</Link>
-            {userId === 0 && <Link className={s.refRight} to='/signIn'>Sign in</Link>}
+            <Link className={s.refLeft} to='/'>Главная</Link>
+            {userId === 0 && <Link className={s.refRight} to='/signIn'>Вход</Link>}
             {userId !== 0 &&
             <GoogleLogout clientId={clientId} render ={()=>
-                <button className={s.refRight} onClick={signOutClicked}>Sign out</button>}
+                <button className={s.refRight} onClick={signOutClicked}>Выход</button>}
             />}
-            {userId !== 0 && <Link className={s.refRight} to='/account'>Account</Link>}
+            {userId !== 0 && <Link className={s.refRight} to='/account'>Аккаунт</Link>}
         </nav>
     );
 }

@@ -24,13 +24,13 @@ const DatesSelection = ({
     return (
         <>
             <div>
-                <Label htmlFor='startDate' value='Start date:'/>
+                <Label htmlFor='startDate' value='Дата начала:'/>
                 <DateInput id='startDate' value={startDate} onDateChange={setStartDate}
                            isError={isStartDateError} filterDate={filterDate}
                 />
             </div>
             <div>
-                <Label htmlFor='endDate' value='End date:'/>
+                <Label htmlFor='endDate' value='Дата окончания:'/>
                 <DateInput id='endDate' value={endDate} onDateChange={setEndDate}
                            isError={isEndDateError} filterDate={filterDate}
                 />

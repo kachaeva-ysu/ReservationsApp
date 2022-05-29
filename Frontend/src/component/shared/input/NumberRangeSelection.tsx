@@ -24,10 +24,10 @@ const NumberRangeSelection = ({
                               }: NumberRangeSectionProps) => {
     return (
         <>
-            <NumberInputSection id={fromId} labelValue='from' value={from} onChange={onFromChange}
+            <NumberInputSection id={fromId} labelValue='от' value={from} onChange={onFromChange}
                                 isError={isError} isPrice={isPrice}
             />
-            <NumberInputSection id={toId} labelValue='to' value={to} onChange={onToChange}
+            <NumberInputSection id={toId} labelValue='до' value={to} onChange={onToChange}
                                 isError={isError} isPrice={isPrice}
             />
         </>

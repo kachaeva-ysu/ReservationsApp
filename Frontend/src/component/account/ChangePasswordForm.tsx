@@ -41,19 +41,19 @@ const ChangePasswordForm = ({userPassword, onUserInfoChange}: ChangePasswordForm
         const isInputValid = validateInput();
         if (isInputValid) {
             try {
-                await userService.updatePassword({oldPassword: password.oldPassword, password: password.newPassword});
+                await userService.updateUser({oldPassword: password.oldPassword, password: password.newPassword});
                 onUserInfoChange({password: password.newPassword});
-                toastHandler.success('Password was successfully changed');
+                toastHandler.success('Пароль успешно изменен');
                 onUserInfoChange({isPasswordBeingChanged: false});
             } catch(error) {
                 console.log(error);
                 if (error instanceof ClientError) {
                     handleErrorsChange({isOldPasswordError: true});
-                    toastHandler.info('Old password is incorrect');
+                    toastHandler.info('Неверный старый пароль');
                 }
                 else {
                     handleErrorsChange({isOldPasswordError: false});
-                    toastHandler.error('Failed to change password');
+                    toastHandler.error('Не удалось изменить пароль. Попробуйте позже');
                 }
             }
         }
@@ -76,16 +76,16 @@ const ChangePasswordForm = ({userPassword, onUserInfoChange}: ChangePasswordForm
 
     return (
         <div className={s.pane}>
-            <InputSection id='oldPassword' type='password' labelValue='Old password'
+            <InputSection id='oldPassword' type='password' labelValue='Старый пароль'
                           value={password.oldPassword} isError={errors.isOldPasswordError}
                           onChange={handleOldPasswordChange}
             />
-            <InputSection id='newPassword' type='password' labelValue="New password"
+            <InputSection id='newPassword' type='password' labelValue="Новый пароль"
                           value={password.newPassword} isError={errors.isNewPasswordError}
                           onChange={handleNewPasswordChange}
             />
-            <Button value='Save' onClick={onSaveButtonClick}/>
-            <Button value='Cancel' onClick={onCancelButtonClick}/>
+            <Button value='Сохранить' onClick={onSaveButtonClick}/>
+            <Button value='Отменить' onClick={onCancelButtonClick}/>
         </div>
     )
 }

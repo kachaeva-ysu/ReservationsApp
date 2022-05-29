@@ -43,7 +43,7 @@ const EditForm = ({userInfo, onUserInfoChange}: EditFormProps) => {
                 await userService.updateUser({name: newUserInfo.name, phone: newUserInfo.phone});
                 onUserInfoChange({name: newUserInfo.name, phone: newUserInfo.phone});
             } catch {
-                toastHandler.error('Failed to update user');
+                toastHandler.error('Не удалось отредактировать аккаунт. Попробуйте позже');
             }
             onUserInfoChange({isBeingEdited: false});
         }
@@ -73,14 +73,14 @@ const EditForm = ({userInfo, onUserInfoChange}: EditFormProps) => {
 
     return (
         <div className={s.pane}>
-            <InputSection id='name' labelValue='Name' value={newUserInfo.name}
+            <InputSection id='name' labelValue='Имя' value={newUserInfo.name}
                           isError={errors.isNameError} onChange={handleNameChange}
             />
-            <InputSection id='phone' labelValue="Phone number" value={newUserInfo.phone}
+            <InputSection id='phone' labelValue="Телефон" value={newUserInfo.phone}
                           isError={errors.isPhoneError} onChange={handlePhoneChange}
             />
-            <Button value='Save' onClick={onSaveButtonClick}/>
-            <Button value='Cancel' onClick={onCancelButtonClick}/>
+            <Button value='Сохранить' onClick={onSaveButtonClick}/>
+            <Button value='Отменить' onClick={onCancelButtonClick}/>
         </div>
     )
 }

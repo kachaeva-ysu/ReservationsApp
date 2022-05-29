@@ -62,7 +62,7 @@ const SignUp = () => {
             try {
                 const user = await authorizationService.createUser(userInfo);
                 saveUserAuthorizationInfo(user.token, user.userId);
-                toastHandler.success('You successfully signed up');
+                toastHandler.success('Регистация успешно выполнена');
 
                 if (!selectedResourceId) {
                     history.push('/');
@@ -72,9 +72,9 @@ const SignUp = () => {
             } catch (error) {
                 if (error instanceof ClientError) {
                     handleErrorsChange({isEmailError: true});
-                    toastHandler.info('User with this email already exists');
+                    toastHandler.info('Введенный email уже занят');
                 } else {
-                    toastHandler.error('Failed to create a user');
+                    toastHandler.error('Не удалось создать пользователя. Попробуйте позже');
                     history.goBack();
                 }
             }
@@ -114,7 +114,7 @@ const SignUp = () => {
     }
 
     return (
-        <PageTemplate headerValue='Sign up'>
+        <PageTemplate headerValue='Регистрация'>
             <SignUpForm userInfo={userInfo} errors={errors} onNameChange={handleNameChange}
                         onPhoneChange={handlePhoneChange} onEmailChange={handleEmailChange}
                         onPasswordChange={handlePasswordChange} onSignUpClick={onSignUpClick}

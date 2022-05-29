@@ -11,7 +11,7 @@ type PoolSelectionProps = {
 const PoolSelection = ({pool, setValue}: PoolSelectionProps) => {
     return (
         <div className={s.marginBottom} data-test-pool-section>
-            <Label htmlFor='pool' value='Has a pool'/>
+            <Label htmlFor='pool' value='Бассейн'/>
             <Checkbox id='pool' value={pool} onChange={setValue}/>
         </div>
     )

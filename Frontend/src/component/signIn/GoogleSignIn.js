@@ -19,14 +19,14 @@ const GoogleSignIn = () => {
         try {
             const user = await authorizationService.signInWithGoogle(res.profileObj.email);
             saveUserAuthorizationInfo(user.token, user.userId);
-            toastHandler.success('You successfully signed in');
+            toastHandler.success('Вход успешно выполнен');
             if (!selectedResourceId) {
                 history.goBack();
             } else {
                 history.push('/reservation/confirm');
             }
         } catch (error) {
-            toastHandler.error('Failed to get user');
+            toastHandler.error('Не удалось получить пользователя. Попробуйте позже');
             history.goBack();
         }
     }
@@ -34,7 +34,7 @@ const GoogleSignIn = () => {
     return (
         <div>
             <GoogleLogin className={s.signInButton} clientId={configData.clientId}
-                         onSuccess={onSignInClick} buttonText='Sign in with google'
+                         onSuccess={onSignInClick} buttonText='Войти через Google'
             />
         </div>
     );

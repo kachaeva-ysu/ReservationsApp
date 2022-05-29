@@ -14,7 +14,7 @@ const PriceRangeSelection = ({priceFrom, priceTo, setPriceFrom, setPriceTo, isEr
 
     return (
         <div>
-            <Label htmlFor='priceForDayRange' value='Price per day:'/>
+            <Label htmlFor='priceForDayRange' value='Цена за день:'/>
             <NumberRangeSelection fromId='priceFrom' toId='priceTo' from={priceFrom} to={priceTo}
                                   onFromChange={setPriceFrom} onToChange={setPriceTo} isPrice={true} isError={isError}
             />

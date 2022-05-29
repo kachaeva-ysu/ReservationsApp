@@ -18,8 +18,8 @@ type ReservationsListProps = {
 const ReservationsList = ({userReservations}: ReservationsListProps) => {
     return (
         <>
-            <Header value='My reservations' subheader={true}/>
-            {userReservations.length === 0 && <Title value='You don`t have any reservation yet'/>}
+            <Header value='Мои резервации' subheader={true}/>
+            {userReservations.length === 0 && <Title value='У Вас еще нет ни одной резервации'/>}
             {userReservations.length !== 0 &&
             <div className={s.flexDisplayed}>
                 {userReservations.map(userReservation =>

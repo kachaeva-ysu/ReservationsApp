@@ -100,7 +100,7 @@ const FilterPanel = () => {
                                          setRoomFrom={handleSetRoomFrom} setRoomTo={handleSetRoomTo}
                                          isError={errors.isRoomRangeError}/>
             <PoolSelection pool={pool} setValue={handleSetPool}/>
-            <Button value='Search' onClick={handleClick}/>
+            <Button value='Найти' onClick={handleClick}/>
         </div>
     );
 }

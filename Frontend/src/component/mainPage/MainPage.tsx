@@ -9,7 +9,7 @@ const MainPage = () => {
     const {isFilterPanelActive} = useContext(AppContext).value;
 
     return (
-        <PageTemplate headerValue='Find your perfect villa here:'>
+        <PageTemplate headerValue='Найдите идеальную виллу здесь:'>
             {isFilterPanelActive && <FilterPanel/>}
             {!isFilterPanelActive && <SearchInfo/>}
             {!isFilterPanelActive && <ResourceList/>}

@@ -9,8 +9,8 @@ type UserInfoSectionProps = {
 const UserInfoSection = ({userInfo}: UserInfoSectionProps) => {
     return (
         <div className={s.flexDisplayed}>
-            <InfoSection id='name' caption='Name:' text={userInfo.name}/>
-            <InfoSection id='phone' caption='Phone:' text={userInfo.phone}/>
+            <InfoSection id='name' caption='Имя:' text={userInfo.name}/>
+            <InfoSection id='phone' caption='Телефон:' text={userInfo.phone}/>
             <InfoSection id='email' caption='Email:' text={userInfo.email}/>
         </div>
     )

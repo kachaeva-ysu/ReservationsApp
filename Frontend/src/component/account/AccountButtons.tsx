@@ -11,9 +11,9 @@ type AccountButtonsProps = {
 const AccountButtons = ({onEditClick, onChangePasswordClick, onDeleteClick}: AccountButtonsProps) => {
     return (
         <div className={s.flexDisplayed}>
-            <Button value='Edit' onClick={onEditClick} isDark={true}/>
-            <Button value='Change password' onClick={onChangePasswordClick} isDark={true}/>
-            <Button value='Delete account' onClick={onDeleteClick} isDark={true}/>
+            <Button value='Редактировать' onClick={onEditClick} isDark={true}/>
+            <Button value='Изменить пароль' onClick={onChangePasswordClick} isDark={true}/>
+            <Button value='Удалить аккаунт' onClick={onDeleteClick} isDark={true}/>
         </div>
     )
 }

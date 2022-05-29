@@ -26,7 +26,7 @@ const ResourcePane = ({resourceId, name}: ResourcePaneProps) => {
                 const imageSource = await imageService.getImage(resourceId);
                 setImageSource(imageSource);
             } catch {
-                toastHandler.error('Failed to fetch villa image');
+                toastHandler.error('Не удалось получить изображение виллы. Попробуйте позже');
             }
         }
         effect();
@@ -36,11 +36,11 @@ const ResourcePane = ({resourceId, name}: ResourcePaneProps) => {
         <div className={s.pane} data-test-resource-pane>
             <Image imageSource={imageSource}/>
             <Title value={name} data-test-title/>
-            <LinkButton to={detailsPath} value='Details' isDark={true}/>
-            {startDate && endDate && <LinkButton to='/reservation/confirm' isDark={true} value='Make reservation'
+            <LinkButton to={detailsPath} value='Подробно' isDark={true}/>
+            {startDate && endDate && <LinkButton to='/reservation/confirm' isDark={true} value='Забронировать'
                                                  onClick={() => setValue({selectedResourceId: resourceId})}
             />}
-            {(!startDate || !endDate) && <Button value='Make reservation' isDark={true}
+            {(!startDate || !endDate) && <Button value='Забронировать' isDark={true}
                                                  onClick={() => datesSettingHandler.setDates()}
             />}
         </div>

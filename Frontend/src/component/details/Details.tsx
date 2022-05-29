@@ -36,7 +36,7 @@ const Details = ({resourceId}: DetailsProps) => {
                 setResource(villaDetails.villa);
                 setReservedDates(villaDetails.reservedDates);
             } catch {
-                toastHandler.error('Failed to fetch villa details');
+                toastHandler.error('Не удалось получить информацию о вилле. Попробуйте позже');
                 history.goBack();
             }
         }
@@ -49,7 +49,7 @@ const Details = ({resourceId}: DetailsProps) => {
                 const imageSource = await imageService.getImage(resourceId);
                 setImageSource(imageSource);
             } catch {
-                toastHandler.error('Failed to fetch villa image');
+                toastHandler.error('Не удалось получить изображение виллы. Попробуйте позже');
             }
         }
         effect();
@@ -61,10 +61,10 @@ const Details = ({resourceId}: DetailsProps) => {
             <ResourceInfo description={resource.description} price={resource.priceForDay + '$'}
                           rooms={resource.numberOfRooms.toString()} pool={resource.hasPool}
             />
-            {startDate && endDate && <LinkButton to='/reservation/confirm' value='Make reservation'
+            {startDate && endDate && <LinkButton to='/reservation/confirm' value='Забронировать'
                                                  onClick={() => setValue({selectedResourceId: resourceId})}
             />}
-            {(!startDate || !endDate) && <Button value='Make reservation'
+            {(!startDate || !endDate) && <Button value='Забронировать'
                                                  onClick={() => datesSettingHandler.setDates(reservedDates)}
             />}
         </PageTemplate>

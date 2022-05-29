@@ -16,16 +16,16 @@ const ReservationPane = ({userReservation}: ReservationPaneProps) => {
     const detailsPath = `/details/${userReservation.villaId}`;
 
     const onCancelClick = () => {
-        confirmationHandler.confirm('Cancel reservation?', cancelReservation);
+        confirmationHandler.confirm('Вы уверены, что хотите отменить резервацию?', cancelReservation);
     }
 
     const cancelReservation = async () => {
         try {
             await reservationService.deleteReservation(userReservation.id);
             setIsCanceled(true);
-            toastHandler.success('Reservation canceled');
+            toastHandler.success('Резервация успешно отменена');
          } catch {
-             toastHandler.error('Failed to delete reservation');
+             toastHandler.error('Не удалось отменить резервацию. Попробуйте позже');
          }
     }
 
@@ -33,14 +33,14 @@ const ReservationPane = ({userReservation}: ReservationPaneProps) => {
         <>
             {!isCanceled &&
             <div className={s.pane}>
-                <InfoSection id='startDate' caption='Start date:'
+                <InfoSection id='startDate' caption='Дата начала:'
                              text={dateFormatter.getDateWithoutTime(userReservation.startDate)}/>
-                <InfoSection id='endDate' caption='End date:'
+                <InfoSection id='endDate' caption='Дата окончания:'
                              text={dateFormatter.getDateWithoutTime(userReservation.endDate)}/>
-                <InfoSection id='villaName' caption='Villa name:' text={userReservation.villaName} path={detailsPath}/>
-                <InfoSection id='totalPrice' caption='Total price:' text={userReservation.totalPrice + '$'}/>
+                <InfoSection id='villaName' caption='Название виллы:' text={userReservation.villaName} path={detailsPath}/>
+                <InfoSection id='totalPrice' caption='Итоговая стоимость:' text={userReservation.totalPrice + '$'}/>
                 {userReservation.startDate>dateFormatter.getFormattedDate('yyyy-mm-dd', new Date()) &&
-                <Button value='Cancel' onClick={onCancelClick} isDark={true}/>}
+                <Button value='Отменить' onClick={onCancelClick} isDark={true}/>}
             </div>}
         </>
     )

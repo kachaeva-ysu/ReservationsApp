@@ -3,7 +3,7 @@ import {configData} from "../../config";
 
 const validateName = (name: string): boolean => {
     if (!name) {
-        toastHandler.info('Name cannot be empty');
+        toastHandler.info('Имя не может быть пустым');
         return false;
     }
     return true;
@@ -11,7 +11,7 @@ const validateName = (name: string): boolean => {
 
 const validatePhone = (phone: string): boolean => {
     if (!configData.phonePattern.test(phone)) {
-        toastHandler.info('Invalid phone number');
+        toastHandler.info('Некорректный телефон');
         return false;
     }
     return true;
@@ -19,7 +19,7 @@ const validatePhone = (phone: string): boolean => {
 
 const validateEmail = (email: string): boolean => {
     if (!configData.emailPattern.test(email)) {
-        toastHandler.info('Invalid email');
+        toastHandler.info('Некорректный email');
         return false;
     }
     return true;
@@ -27,7 +27,7 @@ const validateEmail = (email: string): boolean => {
 
 const validatePassword = (password: string): boolean => {
     if (password.length < 8) {
-        toastHandler.info('Password must be at least 8 characters long');
+        toastHandler.info('Минимальная допустимая длина пароля - 8 символов');
         return false;
     }
     return true;
@@ -35,7 +35,7 @@ const validatePassword = (password: string): boolean => {
 
 const validateDates = (startDate: string, endDate: string): boolean => {
     if (startDate && endDate && endDate < startDate) {
-        toastHandler.info("End date must be after start date");
+        toastHandler.info("Дата начала не может быть позднее даты окончания");
         return false;
     }
     return true;
@@ -43,7 +43,7 @@ const validateDates = (startDate: string, endDate: string): boolean => {
 
 const validatePriceRange = (from: number, to: number): boolean => {
     if (to && from && to < from) {
-        toastHandler.info('Max price must be larger than min price');
+        toastHandler.info('Минимальная цена за день не может быть больше максимальной цены за день');
         return false;
     }
     return true;
@@ -51,7 +51,7 @@ const validatePriceRange = (from: number, to: number): boolean => {
 
 const validateRoomRange = (from: number, to: number): boolean => {
     if (to && from && to < from) {
-        toastHandler.info('Max number of rooms must be larger than min number of rooms');
+        toastHandler.info('Минимальное количество комнат не может быть больше максимального количества комант');
         return false;
     }
     return true;

@@ -28,7 +28,6 @@ namespace ReservationWebAPI
 
         public async Task<User> GetUserAsync(string email)
         {
-            await _accessHandler.CheckAccessRightByEmailAsync(email);
             return await _userActionHandler.GetUserAsync(email);
         }
 

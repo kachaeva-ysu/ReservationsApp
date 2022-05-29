@@ -22,10 +22,8 @@ namespace ReservationWebAPI
                 throw new ForbiddenException("Access denied");
         }
 
-        public async Task CheckAccessRightByEmailAsync(string email)
+        public void CheckAccessRightByEmailAsync(string email)
         {
-            var user = _userActionHandler.GetUserAsync(email);
-            await CheckRefreshTokenAsync(user.Id);
             if(email != _userInfoFromToken.Email)
                 throw new ForbiddenException("Access denied");
         }

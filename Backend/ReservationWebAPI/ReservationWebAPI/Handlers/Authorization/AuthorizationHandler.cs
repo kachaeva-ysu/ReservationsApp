@@ -20,7 +20,7 @@ namespace ReservationWebAPI
 
         public async Task<UserAuthorizationInfo> SignInAsync(string email)
         {
-            await _accessHandler.CheckAccessRightByEmailAsync(email);
+            _accessHandler.CheckAccessRightByEmailAsync(email);
             return await _authorizationActionHandler.SignInAsync(email);
         }
 
